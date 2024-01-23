@@ -1,4 +1,4 @@
-from lettuce import *
+from aloe import *
 import logging
 import os
 import requests
@@ -32,16 +32,14 @@ def suppress_urllib3_warnings():
 def say_hello():
     global test_start_time
     test_start_time = datetime.now()
-    logging.info("Lettuce starting for SRV API test at: {} ...".format(test_start_time))
+    logging.info("Lettuce starting for API test at: {} ...".format(test_start_time))
     world.srv_ids = []
 
 
 @after.all
 def say_goodbye(total):
     duration = datetime.now() - test_start_time
-    logging.info("Lettuce ending for SRV API test at: {} - duration: {}".format(datetime.now(), duration))
-    from common.Health import Health
-    Health(session=world.session).get_version('srv', actuator=True)
+    logging.info("Lettuce ending for API test at: {} - duration: {}".format(datetime.now(), duration))
 
 
 @world.absorb
