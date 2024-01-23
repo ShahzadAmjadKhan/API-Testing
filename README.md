@@ -7,4 +7,4 @@ step folder contains python based step definitions to execute the tests
 
 # How to Run
 Define an environment variable 'TEST_ENVIRONMENT' containing the base URL for api e.g. https://selfhost.test/app
-lettuce <feature file>
+aloe <feature file>
