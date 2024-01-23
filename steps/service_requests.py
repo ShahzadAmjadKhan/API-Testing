@@ -2,38 +2,40 @@ import json
 import os
 import threading
 
-from lettuce import *
-from nose.tools import assert_equals
+from aloe import step
+from aloe import world
 from requests import Response
 
 BASE_URL = 'srv/sys/api'
 
-@step(u'I call (\w+) "([^"]*)" with request "([^"]*)"')
+@step('I call (\w+) "([^"]*)" with request "([^"]*)"')
 def send_request_for_api(step, method, api, request_id):
     send_request(method, api, request_id)
 
 
-@step(u'The response for (\w+) "([^"]*)" is "([^"]*)"')
+@step('The response for (\w+) "([^"]*)" is "([^"]*)"')
 def check_response(step, method, api, request_id):
     resp_json = json.loads(world.session.response.content)
 
     exp_resp = json.loads(get_message(request_id, method, api, False))
 
-    assert_equals(resp_json['code'], exp_resp['code'], \
-        "Got response: {}, expected: {}".format(resp_json['code'], exp_resp['code']))
-    assert_equals(resp_json['message'], exp_resp['message'], \
-        "Got response: {}, expected: {}".format(resp_json['message'], exp_resp['message']))
-    assert_equals(resp_json['severity'], exp_resp['severity'], \
-        "Got response: {}, expected: {}".format(resp_json['severity'], exp_resp['severity']))
-    assert_equals(resp_json['innerErrors'][0]['code'], exp_resp['innerErrors'][0]['code'], \
-        "Got response: {}, expected: {}".format(resp_json['innerErrors'][0]['code'],
-                                                exp_resp['innerErrors'][0]['code']))
-    assert_equals(resp_json['innerErrors'][0]['severity'], exp_resp['innerErrors'][0]['severity'], \
-        "Got response: {}, expected: {}".format(resp_json['innerErrors'][0]['severity'],
-                                                exp_resp['innerErrors'][0]['severity']))
+    assert resp_json['code'] == exp_resp['code'], \
+        f"Got response: {resp_json['code']}, expected: {exp_resp['code']}"
+
+    assert resp_json['message'] == exp_resp['message'],\
+        f"Got response: {resp_json['message']}, expected: {exp_resp['message']}"
+
+    assert resp_json['severity'] == exp_resp['severity'], \
+        f"Got response: {resp_json['severity']}, expected: {exp_resp['severity']}"
+
+    assert resp_json['innerErrors'][0]['code'] == exp_resp['innerErrors'][0]['code'], \
+        f"Got response: {resp_json['innerErrors'][0]['code']}, expected: {exp_resp['innerErrors'][0]['code']}"
+
+    assert resp_json['innerErrors'][0]['severity'] == exp_resp['innerErrors'][0]['severity'], \
+        f"Got response: {resp_json['innerErrors'][0]['severity']}, expected: {exp_resp['innerErrors'][0]['severity']}"
 
 
-@step(u'I call (\w+) "([^"]*)" with request "([^"]*)" (\d+) times using (\d+) threads expecting http codes "([^"]*)"')
+@step('I call (\w+) "([^"]*)" with request "([^"]*)" (\d+) times using (\d+) threads expecting http codes "([^"]*)"')
 def send_request_for_api(step, method, api, request_id, activity_count, thread_count, expected_http_codes_string):
     responses = world.client.parallel_tasks(activity_count, thread_count, send_request(method, api, request_id))
     assert_http_result_codes(responses, expected_http_codes_string)
@@ -60,8 +62,8 @@ def send_request(method, api, request_id):
 
     request_body = get_request_body(req)
 
-    print 'url = ' + url
-    print 'req = ' + req
+    print('url = ' + url)
+    print('req = ' + req)
 
     if method.upper() == 'POST':
         world.session.response = world.session.post(url, data=request_body, headers=request_headers, timeout=10)
@@ -69,12 +71,12 @@ def send_request(method, api, request_id):
         if api == 'service-requests' and world.session.response.status_code == 201:
             header_location = world.session.response.headers['location']
             location = json.loads(world.session.response.content)['link']['href']
-            assert_equals(header_location, location)
+            assert header_location == location
 
             srv_id_start_index = location.rindex('/')
             world.srv_ids.append(location[srv_id_start_index+1:])
 
-    print 'response = ' + world.session.response.content
+    print('response = ' + world.session.response.content)
 
 
 def get_message(req_id, method, api_name, request=True):
@@ -152,8 +154,8 @@ def assert_http_result_codes(responses, expected_http_codes_string):
     for i in responses:
         if not type(i) == Response:
             only_responses = False
-            print "Non-response in result: " + str(type(i))
-            print str(i)
+            print("Non-response in result: " + str(type(i)))
+            print(str(i))
 
     assert only_responses, "Found non-responses"
 
