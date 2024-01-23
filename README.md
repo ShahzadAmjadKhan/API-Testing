@@ -6,5 +6,6 @@ A python project to test APIs based on feature files with predefined requests an
 - step folder contains python based step definitions to execute the tests
 
 # How to Run
-Define an environment variable 'TEST_ENVIRONMENT' containing the base URL for api e.g. https://selfhost.test/app
-aloe <feature file>
+- Define an environment variable 'TEST_ENVIRONMENT' containing the base URL for api e.g. https://selfhost.test/app
+- pip install -r requirements.txt
+- aloe <feature file>
