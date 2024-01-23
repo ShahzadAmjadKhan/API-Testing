@@ -1,0 +1,32 @@
+{
+   "request":{
+      "header":{
+         "Content-type":"application/json;charset=utf-8",
+         "sendingPartyId":"SRM"
+      },
+      "body":{
+  "serviceRequestType": "SEPA Recall Consent request",
+  "state": "Draft",
+  "client": {"partyId": 51211},
+  "serviceRequestTypeVersion": 1,
+  "internalReference": "6zicwq8svpanfrfbx10pr7pq3okg5j4s",
+  "formData": {
+         "cancellationReferenceId":"recall_23423423",
+         "recallDetails":{
+            "payment":{
+               "debtorName":"Debtor Company N.V.",
+               "debtorAccount":"NL09ABNA0517455919",
+               "creditorAccount":"NL09INGB0751352934",
+               "creditorName":"Creditor Company B.V.",
+               "executionDate":"2018-01-01",
+               "amountEuro":"10000"
+            },
+            "reason":"DUPL",
+            "additionalInformation":"Please return it as soon as possible."
+         },
+         "recallStatus":{
+            "status":"ACSP",
+            "subStatus":"CCRQ"
+         }
+  }
+}}}

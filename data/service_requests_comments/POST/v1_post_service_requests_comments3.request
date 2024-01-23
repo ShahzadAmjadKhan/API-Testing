@@ -1,0 +1,13 @@
+{  
+   "request":{  
+      "header":{  
+         "Content-type":"application/json;charset=utf-8",
+         "sendingPartyId":"SRM"
+      },
+      "body":{  
+         "commentText":"Test comment 3",
+         "exposeEmployeeToClient":"Yes",
+         "exposeToClient":true
+      }
+   }
+}

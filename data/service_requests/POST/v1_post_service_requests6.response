@@ -1,0 +1,12 @@
+{
+    "code": "SRVA0002",
+    "message": "Request not according to definition",
+    "severity": "ERROR",
+    "innerErrors": [
+        {
+            "code": "validation.request.body.schema.format",
+            "message": "[Path '/dueDate'] String \"2018-12-04T23:52:55.150\" is invalid against requested date format(s) [yyyy-MM-dd'T'HH:mm:ssZ, yyyy-MM-dd'T'HH:mm:ss.[0-9]{1,12}Z]",
+            "severity": "ERROR"
+        }
+    ]
+}

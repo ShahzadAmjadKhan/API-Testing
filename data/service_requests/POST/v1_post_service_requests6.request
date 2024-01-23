@@ -1,0 +1,39 @@
+{  
+   "request":{  
+      "header":{  
+         "Content-type":"application/json;charset=utf-8",
+         "sendingPartyId":"SRM"
+      },
+      "body":{  
+         "client":{  
+            "partyId":51211,
+            "grid":"12345678"
+         },
+         "contactRolePlayerId":11534,
+         "serviceRequestType":"Habits",
+         "serviceRequestTypeVersion":11,
+         "documentLocales":[  
+
+         ],
+         "formData":{  
+            "client":{  
+               "userName":"11534",
+               "age":"44",
+               "dob":"1969-06-05",
+               "wbExistingUser":"WB46352911"
+            }
+         },
+         "clientReference":"SRV automation request 7",
+         "internalReference":"SRV automation request 7",
+         "priority":"Critical",
+         "originatingChannel":"Phone",
+         "exposeToClient":true,
+         "complaint":true,
+         "ownerTeam":"SR Test Company A-Team",
+         "productRequest":"Virtual Ledger Account - Unblock Card",
+         "billable":true,
+         "dueDate":"2018-12-04T23:52:55.150",
+         "state":"Draft"
+      }
+   }
+}

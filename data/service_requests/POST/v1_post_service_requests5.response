@@ -1,0 +1,12 @@
+{
+    "code": "SRVA0002",
+    "message": "Request not according to definition",
+    "severity": "ERROR",
+    "innerErrors": [
+        {
+            "code": "SRV0107",
+            "message": "org.xml.sax.SAXParseException; lineNumber: 1; columnNumber: 245; cvc-datatype-valid.1.2.1: '1969-JUN-05' is not a valid value for 'date'.",
+            "severity": "ERROR"
+        }
+    ]
+}

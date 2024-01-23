@@ -1,0 +1,12 @@
+{
+    "code": "SRVA0002",
+    "message": "Request not according to definition",
+    "severity": "ERROR",
+    "innerErrors": [
+        {
+            "code": "SRV0001",
+            "message": "Mandatory field ClientPartyId not delivered.",
+            "severity": "ERROR"
+        }
+    ]
+}

@@ -1,0 +1,12 @@
+{
+    "code": "SRVA0002",
+    "message": "Request not according to definition",
+    "severity": "ERROR",
+    "innerErrors": [
+        {
+            "code": "validation.request.parameter.header.missing",
+            "message": "Header parameter 'sendingPartyId' is required on path '/srv/sys/api/v1/service-requests' but not found in request.",
+            "severity": "ERROR"
+        }
+    ]
+}
